@@ -30,7 +30,8 @@ export default function Home({ homeassets }) {
         <link rel="icon" type="image/png" sizes="32x32" href="/fav/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="96x96" href="/fav/favicon-96x96.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/fav/favicon-16x16.png" />
-        <meta name="theme-color" content="#f7f4ee"/>
+        <meta name="theme-color" content="#eee9e0"/>
+        <meta name="msapplication-TileColor" content="#eee9e0"/>
         <meta name="msapplication-TileImage" content="/fav/ms-icon-144x144.png" />
 
       </Head>
