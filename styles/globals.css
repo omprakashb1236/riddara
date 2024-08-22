@@ -22,6 +22,7 @@ main::before{
   height: calc(100% - 146px);
   background: url(/images/strokes.png);
   background-size: cover;
+  background-position: right top;
 }
 .logo{
   position: absolute;
@@ -99,9 +100,19 @@ main::before{
     text-align: center;
 }
 .content-image{
-  top: 35%;
+  top: 38%;
 }
 .footer-logo{
   margin-bottom: 20px;
+}
+main::before{
+    top: 106px;
+    right: 20px;
+    width: calc(100% - 20px);
+    height: calc(100vh - 106px);
+}
+.logo img{
+  width: 147px;
+  height: auto;
 }
  }

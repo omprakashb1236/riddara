@@ -99,8 +99,6 @@ export async function getServerSideProps() {
 }`;
 
   const homeassets = await sanityClient.fetch(query);
-
-  console.log(homeassets);
   return {
     props: {
       homeassets
