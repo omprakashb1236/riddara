@@ -198,7 +198,7 @@ main::before {
   }
 
   .footer-logo img {
-    width: 175px;
+    width: 150px;
     height: auto;
   }
 
@@ -209,8 +209,14 @@ main::before {
 
   main::before {
     top: 60px;
-    height: calc(100% - 66px);
+    height: calc(100% - 115px);
     right: 30px;
     width: calc(100% - 30px);
+  }
+  .copy-right-txt span {
+    font-size: 12px;
+  }
+  .bottom-content {
+    bottom: 10px;
   }
 }
