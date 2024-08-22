@@ -120,13 +120,13 @@ main::before {
 }
 
 
-@media only screen and (max-width:768px) {
+@media only screen and (max-width:850px) {
   .banner img {
     object-position: calc(77% - 0px) center;
   }
 }
 
-@media only screen and (max-width:767px) {
+@media only screen and (max-width:820px) {
   .banner img {
     object-position: calc(82% - 0px) center;
   }
