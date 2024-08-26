@@ -8,11 +8,7 @@ const Header = ({navigationItems, LanguageSwitcher }) => {
 
     return (
         <>
-         <header>
-      <nav>
-        <Navigation navigationItems={navigationItems} />
-      </nav>
-    </header>
+         
         
         </>
     );

@@ -1,4 +1,5 @@
-// pages/_app.js
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '@/styles/globals.css';
 import { fetchNavigationItems } from '../lib/sanity';
 import Layout from '../components/Layout';
 
