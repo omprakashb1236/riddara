@@ -1,6 +1,19 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '@/styles/globals.css';
+// pages/_app.js
+import { fetchNavigationItems } from '../lib/sanity';
+import Layout from '../components/Layout';
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function MyApp({ Component, pageProps, navigationItems }) {
+  return (
+    <Layout navigationItems={navigationItems}>
+      <Component {...pageProps} />
+    </Layout>
+  );
 }
+
+MyApp.getInitialProps = async ({ router }) => {
+  const locale = router.locale || 'en'; 
+  const navigationItems = await fetchNavigationItems(locale);
+  return { navigationItems };
+};
+
+export default MyApp;
