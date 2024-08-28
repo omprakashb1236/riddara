@@ -34,6 +34,7 @@ const LanguageSwitcher = () => {
 
   return (
     <>
+    <div className='header'>
     <div className='top-header d-flex justify-content-between'>
       <div className='logo'>
       <Image
@@ -51,6 +52,7 @@ const LanguageSwitcher = () => {
       onChange={handleChange}
       components={{ SingleValue: customSingleValue }}
     />
+    </div>
     </div>
     </div>
     </>

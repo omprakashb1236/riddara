@@ -8,9 +8,6 @@ class MyDocument extends Document {
     return (
       <Html key={locale} lang={locale || 'en'} dir={isRtl ? 'rtl' : 'ltr'}>
         <Head>
-        <title>Riddara</title>
-        <meta name="description" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="apple-touch-icon" sizes="57x57" href="/fav/apple-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/fav/apple-icon-60x60.png" />
         <link rel="apple-touch-icon" sizes="72x72" href="/fav/apple-icon-72x72.png" />
