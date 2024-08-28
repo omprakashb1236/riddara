@@ -8,7 +8,9 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  letter-spacing: -0.08em;
 }
+
 .header{
   padding: 40px 40px 0 40px;
     position: absolute;
@@ -29,21 +31,47 @@ body {
 .css-1u9des2-indicatorSeparator{
   display: none!important;
 }
-.css-tj5bde-Svg{
-  stroke-width: 1!important;
+.lang-sel .flag-img{
+  font-weight: 600;opacity: 1;font-size: 14px!important;letter-spacing: -0.08em;
+}
+.lang-sel svg{
     width: 15px;
     fill: #2D2926!important;height: auto !important;
+    opacity: 1;
 }
 .css-1xc3v61-indicatorContainer{
   padding: 0!important;
 }
-.lang-sel .css-hlgwow div{
-  font-size: 14px;
+.lang-sel .flag-inn{
+ background: transparent!important;
 }
-[lang="ar"] .lang-sel .css-hlgwow div{
+.lang-sel div{
+  font-size: 13px;
+}
+.lang-sel div{
+  padding: 0;
+}
+.lang-sel .css-hlgwow{
+margin: 0;
+    flex: inherit;
+    display: flex;
+    background: transparent;
+    padding: 2px 8px 2px 0!important;
+}
+.lang-sel .css-hlgwow input{
+  left:0px;
+  position: absolute;
+}
+[lang="ar"] .lang-sel .css-hlgwow .flag-img{
   flex-direction: row-reverse;
 }
-
+[lang="ar"] .lang-sel .css-hlgwow{
+  overflow: visible;
+  padding: 2px 0px 2px 4px!important;
+}
+[lang="ar"] .flag-img img{
+  margin-right: 4px;
+}
 .banner .banner-img{
   width: 100%;
   height: auto;
@@ -66,9 +94,10 @@ body {
   font-size: 24px;
   line-height: 29px;
   margin: 0;
+  letter-spacing: -0.08em;
 }
 .banner-txt h2{
-font-weight: 600;
+font-weight: 700;
 }
 .btnGroup{
   gap: 18px;
@@ -81,6 +110,7 @@ position: relative;
     justify-content: center;
     align-items: center;
     width: 202px;
+    letter-spacing: -0.08em;
     height: 51px;
     font-size: 14px;
     line-height: 17px;
@@ -131,6 +161,8 @@ left: 0;
 }
 .bookTestDrive:after{
   top: 252px;width: 1216px;
+  height: 419px;
+  background: url(/images/form-svg-line.svg);
 }
 [lang="ar"] .intro-txt::after,[lang="ar"] .bookTestDrive::after{
   transform: rotateY(180deg);
@@ -333,16 +365,13 @@ font-size: 40px;
   font-size: 24px;
   font-weight: 400;
   line-height: 50px;
-  letter-spacing: -0.08em;
   text-align: left;
   margin: 0;
 }
 .btd-hdg h2{
-  font-family: Montserrat;
 font-size: 50px;
 font-weight: 800;
 line-height: 50px;
-letter-spacing: -0.08em;
 text-align: left;
 
 }
@@ -378,5 +407,17 @@ form button{
   height: 51px;
   text-indent: -1000px;
     border: 0;
-    margin-bottom: 113px;
+    margin:32px 0 113px 0;
+}
+form .consent span{
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+  margin-left: 8px;
+}
+form .consent span a{
+  color: #FF5B00;
+  font-weight: 600;
+  text-decoration: none;
+  padding-left: 2px;
 }

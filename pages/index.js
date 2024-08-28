@@ -279,6 +279,12 @@ export default function Home({ homepageData }) {
                 </div>
               </div>
             </div>
+            <div className='consent'><Image
+            src='/images/radio-btn.svg'
+            alt="logo"
+            width={12}
+            height={12}
+          /> <span>I have read and agree to the <Link href="#">Privacy Policy.</Link></span></div>
             <button type="submit">Submit</button>
           </form>
         </div>

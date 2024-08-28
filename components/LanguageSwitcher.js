@@ -1,12 +1,6 @@
 import { useRouter } from 'next/router';
 import Select from 'react-select';
-import Image from 'next/image'
-import { Montserrat } from 'next/font/google';
-
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  weight: '600',
-})
+import Image from 'next/image';
 
 const LanguageSwitcher = () => {
   const router = useRouter();
@@ -22,40 +16,74 @@ const LanguageSwitcher = () => {
   };
 
   const customSingleValue = ({ data }) => (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
+    <div className='flag-img' style={{ display: 'flex', alignItems: 'center' }}>
       <img
         src={data.flag}
         alt={`${data.label} flag`}
-        style={{ width: '20px', marginRight: '8px' }}
+        style={{ width: '20px', marginRight: '4px' }}
       />
       {data.label}
     </div>
   );
 
-  return (
-    <>
-    <div className='header'>
-    <div className='top-header d-flex justify-content-between'>
-      <div className='logo'>
-      <Image
-              src='images/main-logo.svg'
-              alt="banner image"
-              width={175}
-              height={16}
-            />
+  const customOption = (props) => {
+    return (
+      <div {...props.innerProps} style={{ display: 'flex',width:'60px', alignItems: 'center', padding: '4px 8px' }}>
+        
+        {props.data.label}
       </div>
-      <div className='lang-sel'>
-    <Select
-    className={montserrat.className}
-      defaultValue={languageOptions.find(option => option.value === activeLocale)}
-      options={languageOptions}
-      onChange={handleChange}
-      components={{ SingleValue: customSingleValue }}
-    />
-    </div>
-    </div>
-    </div>
-    </>
+    );
+  };
+
+  return (
+    <header className="header">
+      <div className="top-header d-flex justify-content-between align-items-center">
+        <div className="logo">
+          <Image
+            src="/images/main-logo.svg"
+            alt="Main logo"
+            width={175}
+            height={16}
+          />
+        </div>
+        <div className="lang-sel">
+          <Select
+            defaultValue={languageOptions.find(option => option.value === activeLocale)}
+            options={languageOptions}
+            onChange={handleChange}
+            className='flag-inn'
+            components={{
+              SingleValue: customSingleValue,
+              Option: customOption,
+            }}
+            isSearchable={false} // Disable search for a cleaner UI
+            styles={{
+              control: (provided) => ({
+                ...provided,
+                background:'transparent',
+                border:'0',
+                boxShadow:'inherit'
+              }),
+              singleValue: (provided) => ({
+                ...provided,
+                display: 'flex',
+                alignItems: 'center',
+                maxWidth:'60px',
+              }),
+              menu: (provided) => ({
+                ...provided,
+                width: 98, 
+              }),
+              indicatorContainer: (provided) => ({
+                ...provided,
+                padding: '0px',
+              }),
+              
+            }}
+          />
+        </div>
+      </div>
+    </header>
   );
 };
 
