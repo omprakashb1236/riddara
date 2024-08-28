@@ -278,7 +278,7 @@ font-size: 40px;
   align-items: center;
 }
 .car-collection .swiper-button-prev,.car-collection .swiper-button-next{
-  width: 68px;
+  width: 68px;top: 46%;
   height: 68px;
 }
 .car-collection .swiper-button-prev:after,.car-collection .swiper-button-next:after{
@@ -292,6 +292,18 @@ font-size: 40px;
 .car-collection .swiper-button-next:after{
   background: url(/images/swipe-right.svg) no-repeat;
 }
+.car-collection .swiper-fade .swiper-slide::before{
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 896px;
+  height: 324px;
+  content: '';
+  background: url(/images/car-shadow.png) no-repeat;
+  background-size: 100%;
+  transform: translate(-50%, 0);
+  z-index: -1;
+}
 .car-collection .swiper-pagination-bullet em {
   cursor: pointer;
   width: 18px;
@@ -304,6 +316,7 @@ font-size: 40px;
     justify-content: center;
     align-items: center;
     bottom: 0!important;
+    position: static;
 }
 .car-collection .swiper-pagination-bullet{
   width: 24px;
