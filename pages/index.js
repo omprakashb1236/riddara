@@ -184,7 +184,9 @@ export default function Home({ homepageData }) {
           </div>
           <ColorScheme images={pageData.carColorModel?.images || []} />
         </div>
+        <div className='spec-container'>
         <Specification carSpec={pageData.carFeatures} />
+        </div>
         <div className='videoCarousel'>
           <VideoCarousel videoCarousel={pageData.videoCarousel} />
         </div>

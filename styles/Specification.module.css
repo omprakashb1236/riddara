@@ -8,6 +8,7 @@
     min-height: 284px;
 }
 .specs{margin-top: 60px;}
+
 .spec_col{width: 317px;position: relative; min-height: 284px;}
 .spec_col::after{
     content: '';
