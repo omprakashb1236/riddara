@@ -96,11 +96,11 @@ margin: 0;
   margin: 0;
   letter-spacing: -0.08em;
 }
-.banner-txt h2{
+.banner-txt h2,.banner-txt h1 span{
 font-weight: 700;
 }
 .btnGroup{
-  gap: 18px;
+  gap: 20px;
   max-width: 422px;
   align-items: center;
 }
@@ -148,6 +148,12 @@ position: relative;
 transform: rotateY(180deg);
 right: inherit;
 left: 0;
+}
+[lang="ar"] .bookTestDrive {
+  padding: 120px 156px 0 0;
+}
+[lang="ar"] .btd-hdg p,[lang="ar"] .btd-hdg h2{
+text-align: right;
 }
 .intro-txt::after,.bookTestDrive:after{
   position: absolute;
@@ -249,6 +255,12 @@ left: 0;
   padding-left: 156px;letter-spacing: -2px;
   margin-bottom: 50px;
 }
+[lang="ar"] .videoCarousel h2{
+  padding:0 156px 0 0;
+}
+[lang="ar"] .videoCarousel h3{
+  padding:0 156px 0 0;
+}
 .videoCarousel h3 span{
   color: #FF5B00;
 }
@@ -271,6 +283,12 @@ font-size: 40px;
   font-size: 30px;
   line-height: 36px;
   font-weight: 400;color: #fff;
+}
+[lang="ar"] .car-collection h2{
+  padding: 64px 156px 0 0;
+}
+[lang="ar"] .car-collection h3{
+  padding: 0px 156px 0 0;
 }
 .car-collection{
   height: 762px;
@@ -319,10 +337,10 @@ font-size: 40px;
   height: 68px;
 }
 .car-collection .swiper-button-prev:after{
-  background: url(/images/swipe-left.svg) no-repeat;
+  background: url(/images/swipe-right.svg) no-repeat;    font-size: 0;
 }
 .car-collection .swiper-button-next:after{
-  background: url(/images/swipe-right.svg) no-repeat;
+  background: url(/images/swipe-left.svg) no-repeat;    font-size: 0;
 }
 .car-collection .swiper-fade .swiper-slide::before{
   position: absolute;
@@ -392,7 +410,10 @@ form{
     font-size: 14px;
   line-height: 17px;
   font-weight: 400;
+  outline: inherit !important;
+    box-shadow: inherit !important;
 }
+
 .form-group{
   position: relative;
 }
@@ -420,4 +441,19 @@ form .consent span a{
   font-weight: 600;
   text-decoration: none;
   padding-left: 2px;
+}
+[lang="ar"] .footerLinks{
+padding-left: 0;
+}
+form input::placeholder {
+  color: red;
+  opacity: 1; 
+}
+
+form input::-ms-input-placeholder {
+  color: red;
+}
+form select{
+  background: url(/images/angle-small-down.png) no-repeat 16px 16px;
+  background-position: right top;
 }

@@ -15,7 +15,6 @@ import Footer from '@/components/Footer';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-
 const montserrat = Montserrat({
   subsets: ['latin'],
   weight: '400',
@@ -28,8 +27,11 @@ export default function Home({ homepageData }) {
   const formik = useFormik({
     initialValues: {
       firstName: '',
+      salutation: '',
       lastName: '',
       mobile: '',
+      location: '',
+      carType: '',
       email: '',
     },
     validationSchema: Yup.object({
@@ -39,6 +41,9 @@ export default function Home({ homepageData }) {
       lastName: Yup.string()
         .max(20, 'Must be 20 characters or less')
         .required('Last Name is required'),
+      salutation: Yup.string().required('Salutation is required'),
+      location: Yup.string().required('Location is required'),
+      carType: Yup.string().required('Select vehicle type'),
       mobile: Yup.string()
         .matches(/^[0-9]+$/, 'Mobile number must be only digits')
         .min(10, 'Must be at least 10 digits')
@@ -53,8 +58,11 @@ export default function Home({ homepageData }) {
         const doc = {
           _type: 'bookTestDriveformSubmission',
           firstName: values.firstName,
+          salutation: values.salutation,
+          location: values.location,
           lastName: values.lastName,
           mobile: values.mobile,
+          carType: values.carType,
           email: values.email,
         };
         await sanityClient.create(doc);
@@ -119,8 +127,7 @@ export default function Home({ homepageData }) {
                 />
               )}
             </div>
-            <h1 className={montserrat.className}>{pageData.bannerSection.heading}</h1>
-            <h2 className={montserrat.className}>{pageData.bannerSection.subheading}</h2>
+            <h1 className={montserrat.className}>{pageData.bannerSection.heading} <span>{pageData.bannerSection.subheading}</span></h1>
             <div className='btnGroup d-flex justify-content-between'>
               {pageData.bannerSection.button1 && (
                 <Link className={`${montserrat.className} btn explore-btn`} href='#'>
@@ -177,7 +184,7 @@ export default function Home({ homepageData }) {
           </div>
           <ColorScheme images={pageData.carColorModel?.images || []} />
         </div>
-        <Specification />
+        <Specification carSpec={pageData.carFeatures} />
         <div className='videoCarousel'>
           <VideoCarousel videoCarousel={pageData.videoCarousel} />
         </div>
@@ -196,13 +203,36 @@ export default function Home({ homepageData }) {
           </div>
           <form onSubmit={formik.handleSubmit}>
             <div className='row'>
-              <div class="col-md-6">
+              <div class="col-md-4">
+                <div className='form-group'>
+                  <select
+                    id="salutation"
+                    name="salutation"
+                    className='form-control'
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.salutation}
+                    style={{
+                      borderColor: formik.touched.salutation && formik.errors.salutation ? 'red' : '',
+                    }}
+                  >
+                    <option value="">Select Salutation*</option>
+                    <option value="Mr.">Mr.</option>
+                    <option value="Ms.">Ms.</option>
+                    <option value="Mrs.">Mrs.</option>
+                  </select>
+                  {formik.touched.salutation && formik.errors.salutation ? (
+                    <div className='error-field' style={{ color: 'red' }}>{formik.errors.salutation}</div>
+                  ) : null}
+                </div>
+              </div>
+              <div class="col-md-4">
                 <div className='form-group'>
                   <input
                     id="firstName"
                     name="firstName"
                     className='form-control'
-                    placeholder='First Name'
+                    placeholder='First Name*'
                     type="text"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
@@ -216,13 +246,13 @@ export default function Home({ homepageData }) {
                   ) : null}
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <div className='form-group'>
                   <input
                     id="lastName"
                     className='form-control'
                     name="lastName"
-                    placeholder='Last Name'
+                    placeholder='Last Name*'
                     type="text"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
@@ -245,7 +275,7 @@ export default function Home({ homepageData }) {
                   id="mobile"
                   className='form-control'
                   name="mobile"
-                  placeholder='Contact Number'
+                  placeholder='Contact Number*'
                   type="text"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -264,7 +294,7 @@ export default function Home({ homepageData }) {
                     id="email"
                     name="email"
                     type="email"
-                    placeholder='Email ddress'
+                    placeholder='Email address*'
                     className='form-control'
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
@@ -279,12 +309,60 @@ export default function Home({ homepageData }) {
                 </div>
               </div>
             </div>
+            <div className='row'>
+              <div class="col-md-6">
+                <div className='form-group'>
+                  <select
+                    id="carType"
+                    name="carType"
+                    className='form-control'
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.carType}
+                    style={{
+                      borderColor: formik.touched.carType && formik.errors.carType ? 'red' : '',
+                    }}
+                  >
+                    <option value="">Select vehicle*</option>
+                    <option value="Riddara RD6">Riddara RD6</option>
+                  </select>
+                  {formik.touched.carType && formik.errors.carType ? (
+                    <div className='error-field' style={{ color: 'red' }}>{formik.errors.carType}</div>
+                  ) : null}
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div className='form-group'>
+                  <select
+                    id="location"
+                    name="location"
+                    className='form-control'
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.location}
+                    style={{
+                      borderColor: formik.touched.location && formik.errors.location ? 'red' : '',
+                    }}
+                  >
+                    <option value="">Select location*</option>
+                    <option value="Sharjah">Sharjah</option>
+                    <option value="Dubai">Dubai</option>
+                    <option value="Abu Dhabi">Abu Dhabi</option>
+                    <option value="Ras Al-Khaimah">Ras Al-Khaimah</option>
+                  </select>
+                  {formik.touched.location && formik.errors.location ? (
+                    <div className='error-field' style={{ color: 'red' }}>{formik.errors.location}</div>
+                  ) : null}
+                </div>
+              </div>
+            </div>
             <div className='consent'><Image
-            src='/images/radio-btn.svg'
-            alt="logo"
-            width={12}
-            height={12}
-          /> <span>I have read and agree to the <Link href="#">Privacy Policy.</Link></span></div>
+              src='/images/radio-btn.svg'
+              alt="logo"
+              width={12}
+              height={12}
+            /> <span>I have read and agree to the <Link href="#">Privacy Policy.</Link></span></div>
             <button type="submit">Submit</button>
           </form>
         </div>
@@ -324,6 +402,31 @@ export async function getStaticProps({ locale }) {
 			text,
 			link
 		  },
+		  imageCarousel[] {
+			asset-> {
+			  _id,
+			  url
+			},
+			alt
+		  }
+		},
+		carFeatures {
+		  carImage {
+			asset-> {
+			  _id,
+			  url
+			},
+			alt
+		  },
+		  heading,
+		  subheading,
+		  content,
+		  heading2,
+		  subheading2,
+		  content2,
+		  heading3,
+		  subheading3,
+		  content3,
 		  imageCarousel[] {
 			asset-> {
 			  _id,

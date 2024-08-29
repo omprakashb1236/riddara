@@ -1,6 +1,6 @@
 
 .footer{
-    height: 321px;
+    min-height: 321px;
     background: #3B4C36;
    
 }
@@ -31,6 +31,13 @@
     position: absolute;
     right: 40px;
     top: 186px;
+}
+[lang="ar"] .socialicons{
+    right: inherit;
+    left: 40px;
+}
+[lang="ar"] .socialicons ul{
+    padding-left: 0;
 }
 .socialicons li img{width: 40px;}
 .socialicons li{margin-left: 8px;}

@@ -10,10 +10,8 @@ import 'swiper/css/effect-fade';
 
 function VideoCarousel({ videoCarousel }) {
   const { heading, subHeading, videoItems = [] } = videoCarousel;
-
-  // Check if the videoItems array is populated
   if (videoItems.length === 0) {
-    return <div>Loading...</div>; // or handle the empty state as needed
+    return <div>Loading...</div>; 
   }
 
   return (

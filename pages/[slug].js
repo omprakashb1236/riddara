@@ -23,11 +23,7 @@ const Page = ({ pageData }) => {
 
 export async function getStaticPaths() {
   const query = `*[_type == "page" && defined(slug.current)][].slug.current`;
-
   const paths = await sanityClient.fetch(query);
-
-
-
   return {
     paths: paths.map(slug => ({ params: { slug } })),
     fallback: true,

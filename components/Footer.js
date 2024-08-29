@@ -20,7 +20,7 @@ const Footer = () => {
         </div>
         <div className={styles.copyright}>
           <p>© 2024 Riddara. All Rights Reserved.</p>
-          <ul>
+          <ul className='footerLinks'>
             <li><a href="">Terms & Conditions</a></li>
             <li><a href="">Privacy Policy</a></li>
             <li><a href="">Cookie Policy</a></li>
