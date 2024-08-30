@@ -5,60 +5,44 @@ import { useTranslation } from 'react-i18next';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 import 'swiper/css/effect-fade';
 
 function VideoCarousel({ videoCarousel }) {
-  const { t } = useTranslation();
   const { heading, subHeading, videoItems = [] } = videoCarousel;
-  const swiperRef = useRef(null); 
-
   if (videoItems.length === 0) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>; 
   }
 
-  useEffect(() => {
-    if (swiperRef.current) {
-      const bullets = swiperRef.current.querySelectorAll('.swiper-pagination .swiper-pagination-bullet');
-      bullets.forEach((bullet, index) => {
-        const videoItem = videoItems[index];
-        if (videoItem) {
-          bullet.innerHTML = `
-            <h4>${t(videoItem.title)}</h4>
-            <p>${t(videoItem.subtitle || '')}</p>
-          `;
-        }
-      });
-    }
-  }, [videoItems, t]); 
-
   return (
-    <div ref={swiperRef}> 
-      <h2>{t(heading)}</h2>
-      <h3>{t(subHeading)} <span>M.A.P</span></h3>
+    <div>
+      <h2>{heading}</h2>
+      <h3>{subHeading} <span>M.A.P</span></h3>
       <Swiper
         modules={[Navigation, Pagination, EffectFade]}
         spaceBetween={50}
         slidesPerView={1}
-        effect="fade"
+        effect={'fade'}
         pagination={{
           clickable: true,
-          renderBullet: (index, className) => {
-            return `<div class="${className}" data-index="${index}">
-                      <h4>${t(videoItems[index]?.title || '')}</h4>
-                      <p>${t(videoItems[index]?.subtitle || '')}</p>
-                    </div>`;
+          renderBullet: function (index, className) {
+            if (videoItems[index]) {
+              return `<div class="${className}" data-index="${index}">
+                        <h4>${videoItems[index].title}</h4>
+                        <p>${videoItems[index].subtitle == null ? '' : videoItems[index].subtitle}</p>
+                      </div>`;
+            }
+            return `<div class="${className}" data-index="${index}"></div>`;
           },
         }}
         onSwiper={(swiper) => {
-          if (swiperRef.current) {
-            const bullets = swiperRef.current.querySelectorAll('.swiper-pagination .swiper-pagination-bullet');
-            bullets.forEach(bullet => {
-              bullet.addEventListener('mouseover', function () {
-                const index = this.getAttribute('data-index');
-                swiper.slideTo(parseInt(index));
-              });
+          const bullets = document.querySelectorAll('.swiper-pagination .swiper-pagination-bullet');
+          bullets.forEach(bullet => {
+            bullet.addEventListener('mouseover', function () {
+              const index = this.getAttribute('data-index');
+              swiper.slideTo(parseInt(index));
             });
-          }
+          });
         }}
       >
         {videoItems.map((video, index) => (
@@ -77,5 +61,4 @@ function VideoCarousel({ videoCarousel }) {
     </div>
   );
 }
-
 export default VideoCarousel;
