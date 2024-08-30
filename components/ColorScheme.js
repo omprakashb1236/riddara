@@ -18,7 +18,7 @@ export default function ColorScheme({ images }) {
         pagination={{
           clickable: true,
           renderBullet: (index, className) => {
-            const color = images[index]?.color || '#000'; // Fallback color if not specified
+            const color = images[index]?.color || '#000';
             return `
               <span class="${className}" style="border-color:${color};">
                 <em style="background-color:${color};"></em>
