@@ -18,7 +18,7 @@ const Footer = () => {
         </div>
         <div className={styles.backtop}>
           <Image
-            src='/images/back-to-top.png'
+            src='/images/back-to-top-img.png'
             alt="back-to-top"
             width={84}
             height={43}
