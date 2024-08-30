@@ -14,6 +14,8 @@ import Specification from '@/components/Specification';
 import Footer from '@/components/Footer';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -54,22 +56,83 @@ export default function Home({ homepageData }) {
         .required('Email is required'),
     }),
     onSubmit: async (values) => {
+      const data = JSON.stringify({
+        enquiry: {
+          apikey: "3A1461B3A2D2001206AB0090",
+          lead: {
+            origin: "Website Form",
+            source: "WEB",
+            branch: "0240",
+            idnumber: "",
+            allocate: "",
+          },
+          contact: {
+            title: values.salutation,
+            firstname: values.firstName,
+            surname: values.lastName,
+            email: values.email,
+            phone: values.mobile,
+            mobile: values.mobile,
+            source: "website",
+          },
+          seeks: {
+            newused: "NEW",
+            make: "",
+            model: "",
+            stocknumber: "",
+            regnumber: "",
+            notes: "",
+          },
+          tradein: {
+            registration: "",
+            make: "",
+            model: "",
+            mileage: "",
+            year: "",
+            notes: "",
+          },
+          mkagree: {
+            updatemkagree: "true",
+            dealersms: false,
+            dealeremail: false,
+            dealerletter: false,
+            dealerphone: false,
+            partssms: false,
+            partsemail: false,
+            partsletter: false,
+            partsphone: false,
+            salessms: false,
+            salesemail: false,
+            salesletter: false,
+            salesphone: false,
+            servicesms: false,
+            serviceemail: false,
+            serviceletter: false,
+            servicephone: false,
+          },
+        },
+      });
+
       try {
-        const doc = {
-          _type: 'bookTestDriveformSubmission',
-          firstName: values.firstName,
-          salutation: values.salutation,
-          location: values.location,
-          lastName: values.lastName,
-          mobile: values.mobile,
-          carType: values.carType,
-          email: values.email,
-        };
-        await sanityClient.create(doc);
-        alert('Form submitted successfully!');
+        const response = await fetch('https://mobile-r1.cdkglobalonline.com/agmciat/leads-v1/generic.json?SoapAction=InboundEnquiry&ContentType=application%2Fjson', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Cookie': 'BIGipServer~gb_dmz~app-r1.cdkglobalonline.com_pool=369717348.20480.0000',
+          },
+          body: data,
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          toast.success("Form submitted successfully!");
+          formik.resetForm();
+
+        } else {
+          toast.error("An error in form submission.");
+        }
       } catch (error) {
-        console.error('Failed to submit form', error);
-        alert('Failed to submit form, please try again.');
+        toast.error("An error in form submission.");
       }
     },
   });
@@ -92,12 +155,9 @@ export default function Home({ homepageData }) {
   if (!pageData) {
     return <div>No content available for this language.</div>;
   }
-
   if (router.isFallback) {
-    return <div>Loading...</div>;
+    return <>...</>;
   }
-
-
 
   return (
     <>
@@ -105,6 +165,7 @@ export default function Home({ homepageData }) {
         <title>Riddara</title>
       </Head>
       <LanguageSwitcher />
+      <ToastContainer />
       <main>
         <div className='banner'>
           {pageData && (
@@ -185,7 +246,7 @@ export default function Home({ homepageData }) {
           <ColorScheme images={pageData.carColorModel?.images || []} />
         </div>
         <div className='spec-container'>
-        <Specification carSpec={pageData.carFeatures} />
+          <Specification carSpec={pageData.carFeatures} />
         </div>
         <div className='videoCarousel'>
           <VideoCarousel videoCarousel={pageData.videoCarousel} />

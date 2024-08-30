@@ -1,8 +1,7 @@
 import Link from 'next/link';
 import React, { useState } from "react";
 import styles from '../styles/footer.module.css';
-import { GeoAlt, Phone, Envelope, Facebook, Twitter, Linkedin, Pinterest, Instagram, Whatsapp, Telephone, Youtube } from 'react-bootstrap-icons';
-
+import Image from 'next/image'
 const Footer = () => {
 
 
@@ -10,13 +9,28 @@ const Footer = () => {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.logo}>
-          <img src="/images/logo-white.png" alt="footer logo" />
+          <Image
+            src='/images/logo-white.png'
+            alt="footer logo"
+            width={207}
+            height={19}
+          />
         </div>
         <div className={styles.backtop}>
-          <img src="/images/Back-to-top.png" alt="Back-to-top" />
+          <Image
+            src='/images/back-to-top.png'
+            alt="back-to-top"
+            width={84}
+            height={43}
+          />
         </div>
         <div className={styles.agmc}>
-          <img src="/images/agmc-logo.png" alt="agmc-logo" />
+          <Image
+            src='/images/agmc-logo.png'
+            alt="agmc-logo"
+            width={80}
+            height={20}
+          />
         </div>
         <div className={styles.copyright}>
           <p>© 2024 Riddara. All Rights Reserved.</p>
@@ -27,23 +41,62 @@ const Footer = () => {
           </ul>
         </div>
         <div className={styles.socialicons}>
-            <ul>
-              <li>
-                 <a href=""><img src="/images/ig.png" alt="" /></a>
-              </li>
-              <li>
-                 <a href=""><img src="/images/x.png" alt="" /></a>
-              </li>
-              <li>
-                 <a href=""><img src="/images/music.png" alt="" /></a>
-              </li>
-              <li>
-                 <a href=""><img src="/images/yt.png" alt="" /></a>
-              </li>
-              <li>
-                 <a href=""><img src="/images/lnk.png" alt="" /></a>
-              </li>
-            </ul>
+          <ul>
+            <li>
+              <Link href="#">
+                <Image
+                  src='/images/instagram-icon.png'
+                  alt="instagram"
+                  width={40}
+                  height={40}
+                />
+
+              </Link>
+            </li>
+            <li>
+              <Link href="#">
+                <Image
+                  src='/images/twitter-icon.png'
+                  alt="instagram"
+                  width={40}
+                  height={40}
+                />
+
+              </Link>
+            </li>
+            <li>
+
+              <Link href="#">
+                <Image
+                  src='/images/tiktok-icon.png'
+                  alt="tiktok"
+                  width={40}
+                  height={40}
+                />
+
+              </Link>
+            </li>
+            <li>
+              <Link href="#">
+                <Image
+                  src='/images/youtube-icon.png'
+                  alt="youtube"
+                  width={40}
+                  height={40}
+                />
+              </Link>
+            </li>
+            <li>
+              <Link href="#">
+                <Image
+                  src='/images/linkedin-icon.png'
+                  alt="linkedin"
+                  width={40}
+                  height={40}
+                />
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </footer>
